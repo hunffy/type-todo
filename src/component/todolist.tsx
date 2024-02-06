@@ -37,10 +37,26 @@ function TodoList() {
     setTodoList([...todoList, newTodo]);
     setInputText("");
   };
+
+  //삭제
+  const deleteHandler = (id: number) => {
+    setTodoList(todoList.filter((e) => e.id !== id));
+  };
+
+  //수정
+  const updateHandler = (newTodo: TList) => {
+    //newTodo : 새롭게 입력한 값
+  };
   return (
     <div className="todoListContainer">
       {todoList.map((list, index) => (
-        <TodoItem key={list.id} text={list.text} completed={list.completed} />
+        <TodoItem
+          id={list.id}
+          key={index}
+          text={list.text}
+          completed={list.completed}
+          onClickDelete={deleteHandler}
+        />
       ))}
       <CreateTodo
         onChange={textTypingHandler}

@@ -1,9 +1,11 @@
 interface TodoItemProps {
+  id: number;
   text: string;
   completed: boolean;
+  onClickDelete(id: number): void;
 }
 
-function TodoItem({ text, completed }: TodoItemProps) {
+function TodoItem({ id, text, completed, onClickDelete }: TodoItemProps) {
   return (
     <li className="todoContainer">
       {completed ? <button>완료됨</button> : <button>완료하기</button>}
@@ -12,7 +14,11 @@ function TodoItem({ text, completed }: TodoItemProps) {
         <button type="button" className="updateBtn">
           수정
         </button>
-        <button type="button" className="deleteBtn">
+        <button
+          onClick={() => onClickDelete(id)}
+          type="button"
+          className="deleteBtn"
+        >
           삭제
         </button>
       </div>
